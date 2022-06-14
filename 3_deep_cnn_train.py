@@ -1,3 +1,8 @@
+'''
+Based by prof.이승호 leesh903@koreatech.ac.kr
+Modified by 표승현
+'''
+
 import tensorflow as tf
 gpus = tf.config.experimental.list_physical_devices('GPU')
 if gpus:
