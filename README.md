@@ -4,6 +4,9 @@
 
 한국기술교육대학교 융합학과 이승호 교수님(leesh903@koreatech.ac.kr)의 템플릿 코드(2,3,4번 코드)를 기반으로 진행되었다. 
 
+클래스당 100장으로 구성된 데이터셋은 https://drive.google.com/file/d/1pMNI5WedppeDYJg70S4Fmd2ctCG-6nOP/view?usp=sharing 으로 받을 수 있다. 
+
+
 # 천문항법을 위한 별자리 
     
     ## 별자리 검출 및 분류를 사용한 별자리 항법
