@@ -1,3 +1,8 @@
+'''
+Based by prof.이승호 leesh903@koreatech.ac.kr
+Modified by 표승현
+'''
+
 #============================================
 # 데이터 셋 준비
 import numpy as np
