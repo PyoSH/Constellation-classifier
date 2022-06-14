@@ -1,6 +1,6 @@
 '''
-Based by leesh903@koreatech.ac.kr
-Modified by PyoSH
+Based by prof.이승호 leesh903@koreatech.ac.kr
+Modified by 표승현
 '''
 
 import numpy as np
