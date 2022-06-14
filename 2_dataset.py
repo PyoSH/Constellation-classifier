@@ -1,3 +1,8 @@
+'''
+Based by leesh903@koreatech.ac.kr
+Modified by PyoSH
+'''
+
 import numpy as np
 import glob
 import tensorflow as tf
