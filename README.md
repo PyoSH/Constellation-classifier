@@ -115,16 +115,17 @@ stellarium 프로그램에서 선을 해줄 수 있다.
 1번 클래스 → 남십자성
 2번 클래스 → 없음
 
-rgb가 3레이어이듯, 위의 전처리 결과물들을 각기 저장해서 여러 영상들로 만들면 레이어가 여럿인 하나의 대상으로 묶을 수 있다고 한다. 그러면 (height?, width?, N layer)로 코드 상에서 처리할 수 있다고 한다!
+rgb가 3레이어이듯, 위의 전처리 결과물들을 각기 저장해서 여러 영상들로 만들면 레이어가 여럿인 하나의 대상으로 묶을 수 있다. 
+이 프로젝트에서는(height,width,layer)다.
 
-→ line_1, binary_0, binary_1, binary_2, FAST_0, FAST_1, Hough를 하나로 묶는다? 됐다! 
+→Layer: line_1, binary_0, binary_1, binary_2, FAST_0, FAST_1, Hough 
 
 </aside>
 
 ### 4. CNN모델 예측 및 성능평가
 
 <aside>
-💡 일단은 그냥 템플릿대로 돌렸다. 
+💡 
 epoch = 10
 batch_size = 100
 
@@ -164,40 +165,8 @@ dense_5 (Dense)              (None, 3)                 603
 
 </aside>
 
-[Searching dataset for Constellation detection](https://astronomy.stackexchange.com/questions/38483/searching-dataset-for-constellation-detection)
-
----
-
-### 검출!!!! 내가 할 수 있을까…?
-
-[NAVER D2](https://d2.naver.com/helloworld/8344782)
-
-[R-CNN object detection with Keras, TensorFlow, and Deep Learning - PyImageSearch](https://pyimagesearch.com/2020/07/13/r-cnn-object-detection-with-keras-tensorflow-and-deep-learning/)
-
-[Faster R-CNN step by step, Part II](https://dongjk.github.io/code/object+detection/keras/2018/06/10/Faster_R-CNN_step_by_step,_Part_II.html)
-
-[Keras documentation: Object Detection with RetinaNet](https://keras.io/examples/vision/retinanet/)
-
-[종이 시험지 자동 채점 프로그램 | Tensorflow Object Detection API | Faster RCNN | Ch3. 문제 분류 모델 학습하기](https://velog.io/@nayeon_p00/%EC%A2%85%EC%9D%B4-%EC%8B%9C%ED%97%98%EC%A7%80-%EC%9E%90%EB%8F%99-%EC%B1%84%EC%A0%90-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8-Tensorflow-Object-Detection-API-Faster-RCNN-Ch3.-%EB%AC%B8%EC%A0%9C-%EB%B6%84%EB%A5%98-%EB%AA%A8%EB%8D%B8-%ED%95%99%EC%8A%B5%ED%95%98%EA%B8%B0)
-
-[Step-by-Step R-CNN Implementation From Scratch In Python](https://towardsdatascience.com/step-by-step-r-cnn-implementation-from-scratch-in-python-e97101ccde55)
-
-[MaskRCNN Custom Training 드디어 종결!! 아.. 고생많았다.(Colab 사용)](https://hansonminlearning.tistory.com/41?category=935564)
-
-- **후속연구!용!**
-    
-    [https://github.com/open-mmlab/mmdetection](https://github.com/open-mmlab/mmdetection)
-    
-    [https://github.com/facebookresearch/detectron2](https://github.com/facebookresearch/detectron2)
-    
-    [models/research/object_detection at master · tensorflow/models](https://github.com/tensorflow/models/tree/master/research/object_detection)
-    
-
----
-
 ### 참조!!!!!!!
 
-- 참조 논문들!!
     1. Lindblad, Thomas and Clark S. Lindsey. “Star Identification using Neural Networks.” (2007).
         
         [[PDF] Star Identification using Neural Networks | Semantic Scholar](https://www.semanticscholar.org/paper/Star-Identification-using-Neural-Networks-Lindblad-Lindsey/6698ddad6a975c4e22159fdf027a4c4582cd95dc)
