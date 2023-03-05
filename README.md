@@ -4,10 +4,11 @@
 클래스당 100장으로 구성된 데이터셋은 https://drive.google.com/file/d/1pMNI5WedppeDYJg70S4Fmd2ctCG-6nOP/view?usp=sharing 으로 받을 수 있습니다 :)  <br>
 
 ## 천문항법을 위한 별자리 검출 및 분류의 아이디어
-별자리는 지구의 자전과 공전에 따라 다양하게 관측될 수 있습니다. 이 때문에 인류는 고대부터 별자리를 관찰하는 것으로 위치를 알 수 있었습니다.
-다양한 별자리를 구분하기 위해서는 다양한 수학적 방법이 필요합니다. 또한, 관측 데이터인 영상은 촬영하는 장비와 환경에 따라 같은 관측대상임에도 불구하고 다양한 관측 영상이 나오기 때문에 각기 다른 영상처리를 해야 하는 문제가 생깁니다. 이 문제(패턴 인식, 다양하게 관측되는 대상)을 해결하기 위해 합성곱 신경망을 사용해보았습니다. 
-
-- 별자리를 우선적으로 인식해 위치정보를 얻어내는 방식은 별 하나 하나를 통해 항법하는 것 보다는 정확도가 떨어지고, 단일 항성을 분류하는 것보다 정보처리량이 많아지기 때문에 인공위성 등 우주환경의 플랫폼 보다는 행성 표면 혹은 대기권에서 활동하는 플랫폼에 우선적으로 적용할 수 있을 것이라고 생각합니다. 성층권에서 작동하는 무인 비행선 혹은 드론의 경우에는 태양광의 영향을 그나마 덜 받겠지만, 행성 표면에서 작동하는 무인 선박 또는 탐사 로버는 낮 시간에 별자리를 관찰할 수 없어 행성 표면의 플랫폼은 태양 등의 주된 천체물을 사용해 위치정보를 얻어야 할 것입니다. 
+ 별자리는 지구의 자전과 공전에 따라 다양하게 관측될 수 있습니다. 이 때문에 인류는 고대부터 별자리를 관찰하는 것으로 위치를 알 수 있었습니다. <br>
+다양한 별자리를 구분하기 위해서는 다양한 수학적 방법이 필요합니다. 또한, 관측 데이터인 영상은 촬영하는 장비와 환경에 따라 같은 관측대상임에도 불구하고 다양한 관측 영상이 나오기 때문에 각기 다른 영상처리를 해야 하는 문제가 생깁니다. 이 문제(패턴 인식, 다양하게 관측되는 대상)을 해결하기 위해 합성곱 신경망을 사용해보았습니다. <br>
+<br>
+ 별자리를 우선적으로 인식해 위치정보를 얻어내는 방식은 별 하나 하나를 통해 항법하는 것 보다는 정확도가 떨어지고, 단일 항성을 분류하는 것보다 정보처리량이 많아지기 때문에 인공위성 등 우주환경의 플랫폼 보다는 행성 표면 혹은 대기권에서 활동하는 플랫폼에 우선적으로 적용할 수 있을 것이라고 생각합니다. <br>
+성층권에서 작동하는 무인 비행선 혹은 드론의 경우에는 태양광의 영향을 그나마 덜 받겠지만, 행성 표면에서 작동하는 무인 선박 또는 탐사 로버는 낮 시간에 별자리를 관찰할 수 없어 행성 표면의 플랫폼은 태양 등의 주된 천체물을 사용해 위치정보를 얻어야 할 것입니다. 
 (시간대, 지구상의 위치, 방향 도출)
 
 ### 목표
@@ -31,31 +32,31 @@ h5py – 2.10.0
 scipy – 1.4.1
 ```
 
-### 0. 관측장소, 시간 설정
+# 0. 관측장소, 시간 설정
 2022-05-22 00시 ~ 2022-05-23-00시
 
-북반구 (원본 154장)
-검출→동향
-→ 한국, 천안(북반구 중위권)
-→ Akureyri, 아이슬란드(북반구 최북단)
+북반구 (원본 154장) <br>
+검출→동향 <br>
+→ 한국, 천안(북반구 중위권) <br>
+→ Akureyri, 아이슬란드(북반구 최북단)<br>
 
-남반구 (원본 154장)
-검출→남향
-→ Antofagasta, 칠레(남반구 중위권)
-→ Punta Arenas, 칠레(남반구 최남단)
+남반구 (원본 154장)<br>
+검출→남향<br>
+→ Antofagasta, 칠레(남반구 중위권)<br>
+→ Punta Arenas, 칠레(남반구 최남단)<br>
 
-### 1. 별자리 사진 얻기
+# 1. 별자리 사진 얻기
 관측 지역과 시간대를 통제하기 위해 시뮬레이션(Stellarium)을 사용했습니다.
 
 1) 별자리 선을 표시
 2) 특정 별자리를 추적하는 화면을 동영상으로 저장
 2) 저장한 동영상을 py 코드를 사용해 영상들로 나누어 line_1에 저장
 
-### 2. 전처리
-💡 **시뮬레이션 영상** → **전처리**(이진화, 코너/직선검출) → **Detection** → **분류**
+# 2. 전처리
+**시뮬레이션 영상** → **전처리**(이진화, 코너/직선검출) → **Detection** → **분류** <br><br>
 
 1. **선 유무** <br>
-학습의 난이도를 낮추기 위해 stellarium 프로그램 상에서 별자리 선을 표시합니다. (개선사항)
+학습의 난이도를 낮추기 위해 stellarium 프로그램 상에서 별자리 선을 표시(개선사항)
 2. **이진화 종류** <br>
 별을 제외한 다른 노이즈를 제거하기 위함
 → threshold ⇒ (binary_0)
@@ -83,11 +84,8 @@ Layer: line_1, binary_0, binary_1, binary_2, FAST_0, FAST_1, Hough
 
 
 ### 4. CNN모델 예측 및 성능평가
-
-<aside>
-epoch = 10
-batch_size = 100
-</aside>
+epoch = 10 <br>
+batch_size = 100 <br>
 
 ```python
 ver_final.Layer (type)       Output Shape              Param #   
@@ -117,48 +115,15 @@ dense_5 (Dense)              (None, 3)                 603
 ```
 ![Screenshot from 2023-03-05 17-26-40](https://user-images.githubusercontent.com/42665051/222950160-c951781b-debb-4a5d-aaec-c11dc08c1050.png)
 
-
-### 5. 필터, 특징맵 확인
-![featureMapVis_bigDipper_exp_4](https://user-images.githubusercontent.com/42665051/222949942-6e07c540-e2ce-4cae-b9dd-896d6e5d4bf8.png)
+# 추후 연구방향 
 
 
 ### 참조
-
-    1. Lindblad, Thomas and Clark S. Lindsey. “Star Identification using Neural Networks.” (2007).
-        
-        [[PDF] Star Identification using Neural Networks | Semantic Scholar](https://www.semanticscholar.org/paper/Star-Identification-using-Neural-Networks-Lindblad-Lindsey/6698ddad6a975c4e22159fdf027a4c4582cd95dc)
-        
-    
-    1. Rijlaarsdam D, Yous H, Byrne J, Oddenino D, Furano G, Moloney D. Efficient Star Identification Using a Neural Network. *Sensors (Basel)* . 2020;20(13):3684. Published 2020 Jun 30. doi:10.3390/s20133684
-        
-        [Efficient Star Identification Using a Neural Network](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7374481/)
-        
-    
-    1. Rijlaarsdam, David et al. “A Survey of Lost-in-Space Star Identification Algorithms since 2009.” *Sensors (Basel, Switzerland)* vol. 20,9 2579. 1 May. 2020, doi:10.3390/s20092579
-        
-        [](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7248786/)
-        
-    
-    1. Zhan, Yinhu & Chen, Shaojie & Zhang, Xu. (2021). Adaptive celestial positioning for the stationary Mars rover based on a self-calibration model for the star sensor. Journal of Navigation. 1-16. 10.1017/S0373463321000680.
-        
-        [](https://www.researchgate.net/publication/353956401_Adaptive_celestial_positioning_for_the_stationary_Mars_rover_based_on_a_self-calibration_model_for_the_star_sensor)
-        
-    
-    1. Dachev, Yuri & Panov, Avgust. (2017). 21 st century Celestial navigation systems.
-        
-        [21st century Celestial navigation systems](https://www.academia.edu/35098589/21st_century_Celestial_navigation_systems)
-        
-    
-    1. Liheng Ma, Dongshan Zhu, Chunsheng Sun, Dongkai Dai, Xingshu Wang, and ShiQiao Qin, "Three-axis attitude accuracy of better than 5 arcseconds obtained for the star sensor in a long-term on-ship dynamic experiment," Appl. Opt. 57, 9589-9595 (2018)
-        
-        [Three-axis attitude accuracy of better than 5 arcseconds obtained for the star sensor in a long-term on-ship dynamic experiment](https://opg.optica.org/ao/abstract.cfm?uri=ao-57-32-9589)
-        
-    
-    1. **Liu, Xiaoge et al. “Constellation Detection.” (2015).**
-        
-        [[PDF] Constellation Detection | Semantic Scholar](https://www.semanticscholar.org/paper/Constellation-Detection-Liu-Ji/f1d7792bf6796b9286bcb732ea7cd94eae2ad90e)
-        
-    2. ****Constellation Queries over Big Data****
-        
-        [Constellation Queries over Big Data](https://doi.org/10.48550/arXiv.1703.02638)
-        
+1. Lindblad, Thomas and Clark S. Lindsey. “Star Identification using Neural Networks.” (2007). 
+2. Rijlaarsdam D, Yous H, Byrne J, Oddenino D, Furano G, Moloney D. Efficient Star Identification Using a Neural Network. *Sensors (Basel)* . 2020;20(13):3684. Published 2020 Jun 30. doi:10.3390/s20133684
+3. Rijlaarsdam, David et al. “A Survey of Lost-in-Space Star Identification Algorithms since 2009.” *Sensors (Basel, Switzerland)* vol. 20,9 2579. 1 May. 2020, doi:10.3390/s20092579 
+4. Zhan, Yinhu & Chen, Shaojie & Zhang, Xu. (2021). Adaptive celestial positioning for the stationary Mars rover based on a self-calibration model for the star sensor. Journal of Navigation. 1-16. 10.1017/S0373463321000680.
+5. Dachev, Yuri & Panov, Avgust. (2017). 21 st century Celestial navigation systems.
+6. Liheng Ma, Dongshan Zhu, Chunsheng Sun, Dongkai Dai, Xingshu Wang, and ShiQiao Qin, "Three-axis attitude accuracy of better than 5 arcseconds obtained for the star sensor in a long-term on-ship dynamic experiment," Appl. Opt. 57, 9589-9595 (2018)
+7. **Liu, Xiaoge et al. “Constellation Detection.” (2015).**
+8. Constellation Queries over Big Data
