@@ -86,8 +86,6 @@ Layer: line_1, binary_0, binary_1, binary_2, FAST_0, FAST_1, Hough
 
 ## 4. CNN모델 예측 및 성능평가
 ![Screenshot from 2023-03-05 17-26-40](https://user-images.githubusercontent.com/42665051/222950160-c951781b-debb-4a5d-aaec-c11dc08c1050.png)
-epoch = 10 <br>
-batch_size = 100 <br>
 
 ```python
 ver_final.Layer (type)       Output Shape              Param #   
