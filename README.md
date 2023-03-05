@@ -1,7 +1,7 @@
 # Constellation-classifier
 
 한국기술교육대학교 2022년 1학기 [딥러닝 응용(prof.이승호)] 강좌의 텀 프로젝트입니다. <br>
-클래스당 100장으로 구성된 데이터셋은 https://drive.google.com/file/d/1pMNI5WedppeDYJg70S4Fmd2ctCG-6nOP/view?usp=sharing 으로 받을 수 있습니다 :)  <br>
+데이터셋은 https://drive.google.com/file/d/1pMNI5WedppeDYJg70S4Fmd2ctCG-6nOP/view?usp=sharing 으로 받을 수 있습니다 :)  <br>
 더 자세한 내용이 필요하시다면, 작성한 보고서와 함께 설명을 드릴 수 있습니다. 
 
 ### 천문항법을 위한 별자리 검출 및 분류의 아이디어
