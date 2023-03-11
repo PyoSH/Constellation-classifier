@@ -78,9 +78,9 @@ scipy – 1.4.1
 1번 클래스 → 남십자성
 2번 클래스 → 없음
 
-rgb가 3레이어이듯, 위의 전처리 결과물들을 각기 저장해서 여러 영상들로 만들면 레이어가 여럿인 하나의 대상으로 묶을 수 있고, 이 프로젝트에서는(height,width,layer)입니다.
+rgb가 3레이어이듯, 위의 전처리 결과물들을 각기 저장해서 여러 영상들로 만들면 레이어가 여럿인 하나의 대상으로 묶을 수 있습니다. 이 프로젝트에서는 다음 순서로 구성했습니다.
+Layer: line_1, binary_0, binary_1, binary_2, FAST_0, FAST_1, Hough <br>
 
-Layer: line_1, binary_0, binary_1, binary_2, FAST_0, FAST_1, Hough 
 ![Screenshot from 2023-03-05 17-28-28](https://user-images.githubusercontent.com/42665051/222950108-483c4be8-0244-4dc2-bd18-29533be35a5b.png)
 
 
